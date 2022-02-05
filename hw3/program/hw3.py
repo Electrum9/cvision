@@ -67,25 +67,25 @@ def perspectiveCorrection(file, npoints="8"):
     npoints = int(npoints)
     img1 = io.imread(file)
     img2 = np.zeros(np.shape(img1)) # blank image takes on same dimensions/shape as img1
-    
+
     filename = file.split('.')[0] # split around file extension, get name
     try:
         zipped_pts = np.load(f"{filename}.npy")
-        
-        pl = list(zipped_pts[0]) 
+
+        pl = list(zipped_pts[0])
         pr = list(zipped_pts[1])
     except Exception as e:
         print(e)
-        (pl, pr) = requestPoints(img1, img2, npoints) 
+        (pl, pr) = requestPoints(img1, img2, npoints)
         # presents both given image and blank image
         np.save(f"{filename}.npy", np.array([pl, pr]), allow_pickle=True)
-        
+
     print("Points")
     print(tabulate([pl, pr], tablefmt="latex"))
     H21 = homography(pl, pr)
     res = cv2.warpPerspective(img1, H21, (img1.shape[1], img1.shape[0]))
-    
-    return {"Original": img1, 
+
+    return {"Original": img1,
             "Result": res}
 
 def convertPerspective(file1, file2, npoints="8"):
