@@ -9,8 +9,11 @@ documentclass: article
 
 # Code
 
+[Code repository (click on text)](https://github.com/Electrum9/cvision/tree/main/hw5/src).
+
 ```{.python include="./src/hw5.py"}
 ```
+
 
 \newpage
 # Responses
