@@ -123,7 +123,7 @@ def displayImages(labeled_images):
         plt.figure(label)
         plt.imshow(img)
     plt.show()
-        
+
 def main():
     """
     Usage: ./hw3.py [routine alias] [arg1] [arg2] [number of points=8]

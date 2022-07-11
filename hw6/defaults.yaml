@@ -1,0 +1,35 @@
+# Author: Vikram Bhagavatula
+# Date: 2022-02-03
+# Description: Maintains configuration for Pandoc.
+  
+# Syntax highlighting.
+highlight-style: kate
+
+# Various filters for usage with Pandoc.
+filters:
+  - diagram-generator.lua 
+  - include-code-files.lua 
+  - pandoc-csv2table
+  - pandoc-plot
+
+      
+# LaTeX variables.
+variables:
+  header-includes: |
+    \usepackage{mathtools}
+    \usepackage{amsmath}
+    \usepackage[separate-uncertainty=true]{siunitx}
+    \usepackage{tikz}
+    \usepackage{karnaugh-map}
+    \usepackage{enumitem}
+    \setlistdepth{20}
+    \renewlist{itemize}{itemize}{20}
+    \renewlist{enumerate}{enumerate}{20}
+    \setlist[itemize]{label=$\cdot$}
+    \setlist[itemize,1]{label=\textbullet}
+    \setlist[itemize,2]{label=--}
+    \setlist[itemize,3]{label=*}
+    \DeclareMathOperator{\sinc}{sinc}
+  geometry: margin=2cm
+  fontsize: 12pt
+  indent: true
