@@ -100,13 +100,18 @@ def laplacian_pyramid(file, layers=5):
     # img = cv2.imread(file)
     img = cv2.imread(file)
     gray = np.float32(cv2.cvtColor(img, cv2.COLOR_BGR2GRAY))
+
     pyramid = [gray]
+
     for i in range(layers):
         blurred = cv2.GaussianBlur(gray, (3,3), 0)
         last = gray - blurred
         pyramid.append(last)
         gray = cv2.resize(blurred, (0,0), fx=0.5, fy=0.5)
-    return dict(zip(map(str, range(layers)), islice(pyramid, layers)))
+
+    labels = map(str, range(layers))
+    cropped = pyramid[:layers]
+    return dict(zip(labels, cropped))
 
 def corner_detector(file, num_candidates=20):
     # img = cv2.cvtColor(cv2.imread(file, cv2.IMREAD_COLOR), cv2.COLOR_BGR2GRAY)
